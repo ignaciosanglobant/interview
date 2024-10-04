@@ -1,0 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #363636;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: black;
+}
+
+.app {
+  max-width: 600px;
+  margin: auto 0;
+  background: rgb(236, 234, 234);
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+}
+
+.header h1 {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.question-section {
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  color: #555;
+}
+
+.answer-box {
+  border: 1px solid orange;
+  background-color: white;
+  padding: 10px;
+  margin: 10px 0;
+  min-height: 300px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type='text'] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+}
+
+.button-controller button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-controller button:nth-child(2) {
+  background-color: rgb(197, 1, 1);
+}
+
+.button-controller button:nth-child(3) {
+  background-color: rgb(8, 182, 19);
+}
+
+.button-controller {
+  margin-top: .5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

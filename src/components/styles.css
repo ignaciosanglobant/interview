@@ -1,0 +1,17 @@
+.container {
+  border: 1px dotted rgba(0, 0, 0, 0.5);
+  padding: .5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container p {
+  margin: 0;
+}
+
+.container button {
+  padding: .25rem .5rem;
+  background-color: red;
+}
