@@ -17,6 +17,7 @@ const App = () => {
 
   const handleFetch = () => {
     // Logic to fetch a name
+    // Use https://rickandmortyapi.com/api/character/?page=1 as public API
   }
 
   return (
