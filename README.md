@@ -1,8 +1,10 @@
-# React + Vite
+# React Interview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a template for an interview. Follow the instructions:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repo
+2. Create a branch with your first name
+3. Make the "Add name" button to work using the input as name data. Also, use the idGenerator to generate id's
+4. Implement the "Delete all" button so it cleans up the list.
+5. Implement the delete button at the right of each element.
+6. Use the url `https://rickandmortyapi.com/api/character/?page=1` to fetch a character and add it to the list
