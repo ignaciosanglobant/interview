@@ -7,11 +7,7 @@ import { numberGenerator } from './utils/numberGenerator';
 
 const App = () => {
   const [typedName, setTypedName] = useState('');
-  const [allNames, setAllNames] = useState(['Fernanda'])
-
-
-  useEffect(() => {
-  })
+  const [allNames, setAllNames] = useState([{name: 'Fernanda', id: idGenerator()}])
 
   const handleInputChange = (e) => {
     setTypedName(e.target.value)
@@ -19,29 +15,26 @@ const App = () => {
   };
 
   const handleAddTask = () => {
-    setAllNames([...allNames, typedName])
+    setAllNames((prevNames)=> [...prevNames, {name: typedName, id: idGenerator()}])
     setTypedName('')
     // Logic to add task
   };
 
   const handleDeleteAll = () => {
     setAllNames([]);
-    // Logic to delete all elements
   }
 
   const handleFetch = async () => {
-    // Logic to fetch a name
-    // Use https://rickandmortyapi.com/api/character/?page=1 as public API
-    const characters = await fetch('https://rickandmortyapi.com/api/character/?page=1`')
-                              .then(data => data.json())
-                              .then(data => data.results)
-    console.log(characters)
+    /* const response = await fetch('https://rickandmortyapi.com/api/character/?page=1`')
+    const data = await response.json()
+    const characters = data.results */
+    const characters = (await (await fetch('https://rickandmortyapi.com/api/character/?page=1`')).json()).results
     const randomChara = numberGenerator(characters.length+1)
-    setAllNames([...allNames, characters[randomChara].name])
+    setAllNames((prevNames)=> [...prevNames, {name: characters[randomChara].name, id: idGenerator()}])
   }
 
-  const handleDeleteOne = (retrievedName) => {
-    setAllNames(allNames.filter(name => name != retrievedName));
+  const handleDeleteOne = (retrievedKey) => {
+    setAllNames(allNames.filter(nameObj => nameObj.id != retrievedKey));
   }
 
   return (
@@ -56,9 +49,8 @@ const App = () => {
           When pressing the button
         </p>
         <div className="answer-box">
-          {/* This is where the answer will be displayed */}
-          {allNames.map(name =>
-            <NameCard key={name} newName={name} deleteButton={handleDeleteOne} />
+          {allNames.map(nameObj =>
+            <NameCard key={nameObj.id} id={nameObj.id} name={nameObj.name} deleteButton={handleDeleteOne} />
           )}
         </div>
         <div className="input-container">
