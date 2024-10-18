@@ -1,23 +1,40 @@
 import reactLogo from './assets/react.svg';
 import './App.css';
 import NameCard from './components/nameCard';
+import { useEffect, useState } from 'react';
+import { idGenerator } from './utils/idGenerator';
+import { numberGenerator } from './utils/numberGenerator';
 
 const App = () => {
-  const handleInputChange = () => {
+  const [typedName, setTypedName] = useState('');
+  const [allNames, setAllNames] = useState([{name: 'Fernanda', id: idGenerator()}])
+
+  const handleInputChange = (e) => {
+    setTypedName(e.target.value)
     // Handle the controled input
   };
 
   const handleAddTask = () => {
+    setAllNames((prevNames)=> [...prevNames, {name: typedName, id: idGenerator()}])
+    setTypedName('')
     // Logic to add task
   };
 
   const handleDeleteAll = () => {
-    // Logic to delete all elements
+    setAllNames([]);
   }
 
-  const handleFetch = () => {
-    // Logic to fetch a name
-    // Use https://rickandmortyapi.com/api/character/?page=1 as public API
+  const handleFetch = async () => {
+    /* const response = await fetch('https://rickandmortyapi.com/api/character/?page=1`')
+    const data = await response.json()
+    const characters = data.results */
+    const characters = (await (await fetch('https://rickandmortyapi.com/api/character/?page=1`')).json()).results
+    const randomChara = numberGenerator(characters.length+1)
+    setAllNames((prevNames)=> [...prevNames, {name: characters[randomChara].name, id: idGenerator()}])
+  }
+
+  const handleDeleteOne = (retrievedKey) => {
+    setAllNames(allNames.filter(nameObj => nameObj.id != retrievedKey));
   }
 
   return (
@@ -32,14 +49,16 @@ const App = () => {
           When pressing the button
         </p>
         <div className="answer-box">
-          {/* This is where the answer will be displayed */}
-            <NameCard />
+          {allNames.map(nameObj =>
+            <NameCard key={nameObj.id} id={nameObj.id} name={nameObj.name} deleteButton={handleDeleteOne} />
+          )}
         </div>
         <div className="input-container">
           <input
             type="text"
             onChange={handleInputChange}
             placeholder="Write a name..."
+            value={typedName}
           />
         </div>
         <div className="button-controller">
